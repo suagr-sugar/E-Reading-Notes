@@ -1,3 +1,87 @@
+The first file is to organize the format of WeChat reading export notes and convert them to excel format
+The second file is an optimized version of the first. Compared with the first file, you can directly copy your notes from WeChat reading and paste them into a txt file to run.
+3/4/5 test files for different books
+wordcloud.py can generate word clouds.
+
+
+The main purpose of the code
+The code reads a text file (1.txt) containing chapters, original text, comments, and dates, parses the data according to the rules, and then organizes the results into a table and saves it as an Excel file (formatted.xlsx).
+
+steps to use
+Prepare input file
+
+In the code, the input file path is: (find the location of the txt file on your computer).
+Please ensure that the input file exists.
+
+If the path or file name is different, you need to change the value input_file variable in your code to your file path.
+Prepare output folder
+
+The output file path is: (enter the location you want to export to).
+Make sure the folder path exists, or change the value output_file variable in your code to the appropriate output path.
+run code
+
+Copy the code to a Python file such as parse_text_to_excel.py.
+Run in an environment with Python installed.
+
+After the program runs, it will save the extracted content to the specified Excel file and prompt:
+Makefile
+Copy code
+The file has been successfully saved!
+
+Open the Excel file to view the formatted content.
+Code input and output parsing
+Input content (text file format)
+Chapter title:
+
+Format example: Chapter 1: How to learn efficiently
+Will be extracted into the section column.
+
+Original content:
+Format example: Original text: This is a paragraph of original text.
+Will be extracted to the Content column.
+
+Comment content:
+Format example: 2023/01/01 post an idea: This is a comment.
+The date will be extracted to the Date column, and the comments will be extracted to the Comments column.
+
+General content:
+Format example: • This is a normal piece of content.
+Will be extracted to the Contents column, but the Comments and Date columns are empty.
+
+Output content (Excel spreadsheet)
+List:
+Chapter: Save the chapter title.
+Content: Save the original or ordinary content under the section.
+Comments: Save comments corresponding to the original text.
+Date: Save the date of publication of the comment.
+
+
+Detailed explanation of code logic
+
+Initialize input and output paths
+input_file and output_file define the file path. The user needs to ensure that the path is correct.
+Define the data storage structure
+
+
+Regular Expression Matching Rules
+Match chapter title: chapter\ d +：(.+)。
+Match the original content: Original: (. +).
+Match comment and date: (\ d {4}/\ d {2}/\ d {2}) \ s * Post an idea: (. *).
+Matches normal content (content with a • symbol): •\ s * (. +).
+
+
+
+Convert data to a DataFrame object using pandas.
+Use the to_excel () method to save the DataFrame as an Excel file.
+
+
+Dependent installation:
+The program relies on the pandas library. Please ensure that the library is installed before running.
+PIP install pandas
+
+Coding issues:
+Make sure the input file is UTF-8 encoded, otherwise garbled characters may appear.
+
 第一个文件是为了整理微信读书导出笔记的格式，将其转化为excel格式
 第二个文件是第一个的优化版，相比第一个文件，可以直接从微信读书复制笔记，粘贴到txt文件中运行。
 3/4/5为不同书籍的测试文件
